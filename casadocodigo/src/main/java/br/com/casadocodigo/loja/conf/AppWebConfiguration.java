@@ -15,16 +15,18 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.casadocodigo.loja.controllers.HomeController;
 import br.com.casadocodigo.loja.infra.FileSaver;
+import br.com.casadocodigo.loja.models.CarrinhoCompras;
 import br.com.casadocodigo.loja.models.ProdutoDAO;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses = { ProdutoDAO.class, HomeController.class, FileSaver.class })
+@ComponentScan(basePackageClasses = { ProdutoDAO.class, HomeController.class, FileSaver.class, CarrinhoCompras.class })
 public class AppWebConfiguration {
 
 	@Bean
 	public InternalResourceViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setExposedContextBeanNames("carrinhoCompras");
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
